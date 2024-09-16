@@ -1,0 +1,56 @@
+﻿<Window x:Class="CustomControlSystem.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CustomControlSystem.Views"
+     Title="Login" Height="450" Width="400" WindowStartupLocation="CenterScreen"
+        Background="#FFDFE7EC" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None">
+    <Border CornerRadius="15" BorderThickness="1" BorderBrush="#FFB0B0B0" Background="#FFECEFF1">
+        <Grid>
+            <StackPanel Height="400" VerticalAlignment="Center">
+                <Label Content="Welcome Back!" HorizontalAlignment="Center" FontFamily="Times New Roman" FontSize="35" Height="60" 
+                       Background="Transparent" Foreground="#FF333333" Margin="0,0,0,20">
+                    <Label.Effect>
+                        <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.6"/>
+                    </Label.Effect>
+                </Label>
+
+                <TextBlock Text="Username" Background="#FFECEFF1" FontFamily="Times New Roman" FontSize="18" Foreground="#FF747474" Margin="10,0,0,5"/>
+                <TextBox x:Name="txtUsername" Text="{Binding LoginModel.Username}" Margin="10,0,10,10" BorderThickness="1" BorderBrush="#FFB0B0B0"
+                         Foreground="Black" Background="#FFFAFAFA" FontFamily="Century Gothic" FontSize="18" Padding="10">
+                    <TextBox.InputBindings>
+                        <KeyBinding Command="{Binding Path=Login}" CommandParameter="{Binding ElementName=txtPassword}" Key="Enter"/>
+                    </TextBox.InputBindings>
+                </TextBox>
+
+                <TextBlock Text="Password" Background="#FFECEFF1" FontFamily="Times New Roman" FontSize="18" Foreground="#FF747474" Margin="10,0,0,5"/>
+                <PasswordBox x:Name="txtPassword" Margin="10,0,10,10" Background="#FFFAFAFA" BorderThickness="1" BorderBrush="#FFB0B0B0"
+                             Foreground="Black" FontFamily="Century Gothic" FontSize="18" Padding="10">
+                    <PasswordBox.InputBindings>
+                        <KeyBinding Command="{Binding Login}" CommandParameter="{Binding ElementName=txtPassword}" Key="Enter"/>
+                    </PasswordBox.InputBindings>
+                </PasswordBox>
+
+                <TextBlock Text="Username or password is incorrect" Background="#FFECEFF1" FontFamily="Times New Roman" FontSize="14"
+                           Foreground="Red" Margin="10,0,0,10" Visibility="{Binding ErrorVisibility}"/>
+
+                <Button Content="Login" Command="{Binding Login}" CommandParameter="{Binding ElementName=txtPassword}" 
+                        Background="#FF66BB6A" Foreground="White" FontFamily="Century Gothic" FontSize="20" 
+                        Margin="10,0,10,0" Padding="10" BorderThickness="0" Cursor="Hand" 
+                        HorizontalAlignment="Center" Width="120" Height="40">
+                    <Button.Effect>
+                        <DropShadowEffect BlurRadius="15" ShadowDepth="2" Direction="320" Color="#FF333333"/>
+                    </Button.Effect>
+                </Button>
+
+                <TextBlock Text="Don't have an account? Register" Background="Transparent" FontFamily="Times New Roman" FontSize="16"
+                           Foreground="Blue" Margin="10,20,0,10" HorizontalAlignment="Center" Cursor="Hand">
+                    <TextBlock.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding OpenRegister}"/>
+                    </TextBlock.InputBindings>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
